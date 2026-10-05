@@ -25,6 +25,7 @@ body {
     background: var(--escuro);
     color: var(--claro);
     /* var(): usa a variável declarada acima — mude ali, muda tudo */
+   
 }
 
 /* ---------- HEADER fixo no topo ---------- */
