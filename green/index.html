@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- Primeira linha obrigatória: informa ao navegador que é HTML5 -->
+<html lang="pt-br">
+<!-- lang define o idioma: importante para acessibilidade e SEO -->
+
+<head>
+    <!-- O head guarda configurações que NÃO aparecem na página -->
+    <meta charset="UTF-8">
+    <!-- charset garante que acentos (ç, ã, é) apareçam corretamente -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport: faz a página se adaptar ao celular (responsividade) -->
+    <title>GreenNest — Plantas para sua casa</title>
+    <!-- title: é o texto que aparece na ABA do navegador -->
+    <link rel="stylesheet" href="estilo.css">
+    <!-- AQUI o HTML aponta para o arquivo de estilo separado -->
+</head>
+
+<body>
+    <!-- O body guarda TODO o conteúdo visível da página -->
+
+    <!-- ============ HEADER ============ -->
+    <!-- Cabeçalho: logo + menu de navegação -->
+    <header>
+        <h1 class="logo">🌿 GreenNest</h1>
+        <nav>
+            <!-- nav: agrupa os links de navegação do site -->
+            <a href="#hero">Início</a>
+            <a href="#produtos">Plantas</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#faq">Dúvidas</a>
+        </nav>
+    </header>
+
+    <!-- ============ HERO SECTION ============ -->
+    <!-- A primeira impressão: o que aparece sem rolar a página -->
+    <section id="hero" class="hero">
+        <div class="hero-texto">
+            <h2>Traga a natureza para dentro de casa</h2>
+            <!-- h2 aqui, porque o h1 já foi usado no logo -->
+            <p>Plantas selecionadas para cada canto da sua casa.
+               Entrega rápida e garantia de vida por 30 dias.</p>
+            <!-- CTA: Call to Action — o botão que converte -->
+            <a href="#produtos" class="botao-cta">Ver plantas</a>
+        </div>
+        <img src="https://placehold.co/400x400/10B981/fff?text=🪴"
+             alt="Vaso de planta decorativa em ambiente interno">
+        <!-- alt é OBRIGATÓRIO: descreve a imagem para leitores de tela -->
+    </section>
+
+    <!-- ============ SHOWCASE DE PRODUTOS ============ -->
+    <!-- Vitrine: grid de cards com os produtos -->
+    <section id="produtos" class="produtos">
+        <h2>Nossas plantas</h2>
+        <ul class="grade-produtos">
+            <!-- ul + li: lista semântica para os cards -->
+            <li class="card">
+                <img src="https://placehold.co/300x200/7C3AED/fff?text=Samambaia"
+                     alt="Samambaia em vaso suspenso">
+                <h3>Samambaia</h3>
+                <p>Perfeita para ambientes úmidos.</p>
+                <span class="preco">R$ 39,90</span>
+            </li>
+            <li class="card">
+                <img src="https://placehold.co/300x200/00D4FF/000?text=Suculenta"
+                     alt="Suculenta em vaso pequeno de cerâmica">
+                <h3>Suculenta</h3>
+                <p>Pouca água, muita beleza.</p>
+                <span class="preco">R$ 19,90</span>
+            </li>
+            <li class="card">
+                <img src="https://placehold.co/300x200/EC4899/fff?text=Costela"
+                     alt="Costela de adão em vaso branco">
+                <h3>Costela de Adão</h3>
+                <p>A queridinha das decorações.</p>
+                <span class="preco">R$ 59,90</span>
+            </li>
+            <li class="card">
+                <img src="https://placehold.co/300x200/10B981/fff?text=Jiboia"
+                     alt="Jiboia pendurada em suporte de parede">
+                <h3>Jiboia</h3>
+                <p>Cresce até em cantos escuros.</p>
+                <span class="preco">R$ 29,90</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ============ PROVA SOCIAL ============ -->
+    <!-- Depoimentos: pessoas confiam em pessoas -->
+    <section id="depoimentos" class="depoimentos">
+        <h2>Quem comprou, recomenda</h2>
+        <div class="grade-depoimentos">
+            <figure class="depoimento">
+                <!-- figure: marca um conteúdo ilustrativo independente -->
+                <img src="https://placehold.co/80x80/7C3AED/fff?text=A"
+                     alt="Foto de perfil da cliente Ana">
+                <blockquote>"Minha casa ficou outro clima!"</blockquote>
+                <figcaption>Ana, Chapecó</figcaption>
+                <!-- figcaption: legenda da figure -->
+            </figure>
+            <figure class="depoimento">
+                <img src="https://placehold.co/80x80/00D4FF/000?text=B"
+                     alt="Foto de perfil do cliente Bruno">
+                <blockquote>"Chegou super bem embalada."</blockquote>
+                <figcaption>Bruno, Xaxim</figcaption>
+            </figure>
+            <figure class="depoimento">
+                <img src="https://placehold.co/80x80/10B981/fff?text=C"
+                     alt="Foto de perfil da cliente Carla">
+                <blockquote>"Atendimento nota 10!"</blockquote>
+                <figcaption>Carla, Chapecó</figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <!-- Acordeão NATIVO: details + summary, sem JavaScript! -->
+    <section id="faq" class="faq">
+        <h2>Dúvidas frequentes</h2>
+
+        <details>
+            <summary>Vocês entregam em toda a cidade?</summary>
+            <p>Sim! Entregamos em Chapecó e região em até 2 dias úteis.</p>
+        </details>
+
+        <details>
+            <summary>E se a planta morrer?</summary>
+            <p>Temos 30 dias de garantia de vida. Trocamos sem custo.</p>
+        </details>
+
+        <details>
+            <summary>Como escolho a planta ideal?</summary>
+            <p>Chame no WhatsApp: indicamos conforme a luz do seu ambiente.</p>
+        </details>
+    </section>
+
+    <!-- ============ FOOTER + NEWSLETTER ============ -->
+    <!-- Rodapé: fecha a navegação com formulário de e-mail -->
+    <footer>
+        <form class="newsletter">
+            <label for="email">Receba dicas de cuidado com plantas:</label>
+            <!-- label com for ligado ao id do input: acessibilidade -->
+            <input type="email" id="email" name="email"
+                   placeholder="seu@email.com" required>
+            <!-- type="email" valida o formato sozinho no navegador -->
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p class="copyright">© 2026 — GreenNest • Desenvolvido pela turma de Web Design</p>
+    </footer>
+
+</body>
+</html>

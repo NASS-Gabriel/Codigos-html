@@ -1,0 +1,202 @@
+/* ==================================================
+   ESTILO.CSS — Landing Page GreenNest
+   Cada bloco estiliza uma seção do index.html
+   ================================================== */
+
+/* ---------- RESET: zera as diferenças entre navegadores ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border-box: o padding não aumenta a largura do elemento */
+}
+
+/* ---------- VARIÁVEIS: a paleta em um só lugar ---------- */
+:root {
+    --verde: #10B981;      /* cor principal da marca */
+    --roxo: #7C3AED;       /* cor de apoio */
+    --ciano: #00D4FF;      /* destaque do CTA */
+    --escuro: #0D0D1A;     /* fundo escuro */
+    --claro: #F8FAFC;      /* texto claro */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--escuro);
+    color: var(--claro);
+    /* var(): usa a variável declarada acima — mude ali, muda tudo */
+}
+
+/* ---------- HEADER fixo no topo ---------- */
+header {
+    display: flex;                 /* flexbox: alinha logo e menu */
+    justify-content: space-between; /* um em cada ponta */
+    align-items: center;
+    padding: 16px 40px;
+    position: sticky;              /* fica FIXO ao rolar a página */
+    top: 0;
+    background: var(--escuro);
+    border-bottom: 1px solid var(--roxo);
+}
+
+nav a {
+    color: var(--claro);
+    text-decoration: none;         /* tira o sublinhado do link */
+    margin-left: 24px;
+}
+
+nav a:hover {
+    color: var(--ciano);           /* muda a cor ao passar o mouse */
+}
+
+/* ---------- HERO: ocupa a tela inteira ---------- */
+.hero {
+    min-height: 100vh;             /* 100% da altura da tela */
+    display: flex;
+    align-items: center;           /* centraliza verticalmente */
+    justify-content: space-around;
+    padding: 40px;
+}
+
+.hero-texto h2 {
+    font-size: 48px;
+    line-height: 1.2;              /* espaçamento entre linhas */
+}
+
+.hero-texto p {
+    margin: 16px 0 24px;
+    color: #B8C5D6;
+}
+
+/* ---------- CTA: o botão que converte ---------- */
+.botao-cta {
+    display: inline-block;
+    background: var(--ciano);
+    color: var(--escuro);
+    padding: 16px 40px;
+    border-radius: 12px;           /* cantos arredondados */
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s;    /* animação suave */
+}
+
+.botao-cta:hover {
+    transform: scale(1.05);        /* cresce 5% ao passar o mouse */
+}
+
+/* ---------- SHOWCASE: grid de produtos ---------- */
+.grade-produtos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 colunas iguais — o grid se adapta sozinho */
+    gap: 24px;                     /* espaçamento entre os cards */
+    list-style: none;              /* tira as bolinhas da lista */
+    padding: 40px;
+}
+
+.card {
+    background: #151526;
+    border: 1px solid var(--roxo);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;                   /* imagem ocupa o card todo */
+    border-radius: 8px;
+}
+
+.preco {
+    color: var(--verde);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* ---------- PROVA SOCIAL: 3 depoimentos lado a lado ---------- */
+.grade-depoimentos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 40px;
+}
+
+.depoimento {
+    background: #151526;
+    border: 1px solid var(--roxo);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.depoimento img {
+    border-radius: 50%;            /* foto redonda! */
+    width: 80px;
+    height: 80px;
+}
+
+/* ---------- FAQ: estilizando o acordeão nativo ---------- */
+details {
+    background: #151526;
+    border: 1px solid var(--roxo);
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin: 12px 40px;             /* 12px em cima/baixo, 40px nos lados */
+}
+
+summary {
+    cursor: pointer;               /* mãozinha ao passar o mouse */
+    font-weight: bold;
+}
+
+details p {
+    margin-top: 12px;
+    color: var(--verde);
+}
+
+/* ---------- FOOTER + NEWSLETTER ---------- */
+footer {
+    border-top: 2px solid var(--roxo);
+    padding: 40px;
+    text-align: center;
+}
+
+.newsletter input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    width: 260px;
+}
+
+.newsletter button {
+    padding: 12px 24px;
+    background: var(--verde);
+    color: var(--escuro);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.copyright {
+    margin-top: 24px;
+    color: #8894a8;
+    font-size: 14px;
+}
+
+/* ---------- RESPONSIVIDADE: mobile-first ---------- */
+/* Abaixo de 800px, o layout se adapta ao celular */
+@media (max-width: 800px) {
+    .hero {
+        flex-direction: column;    /* texto em cima, imagem embaixo */
+        text-align: center;
+    }
+
+    .grade-produtos {
+        grid-template-columns: 1fr; /* 1 coluna: cards empilham */
+    }
+
+    .grade-depoimentos {
+        grid-template-columns: 1fr;
+    }
+}
