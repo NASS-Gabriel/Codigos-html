@@ -1,0 +1,946 @@
+/* =========================================================
+   FRAGMENTOS DO TEMPO
+   MENU PRINCIPAL
+   Referências visuais à História da Humanidade
+========================================================= */
+
+
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #eeeeee;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(116, 93, 51, 0.13),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #080a0b,
+            #15120d 45%,
+            #090a0b
+        );
+
+    overflow-x: hidden;
+    background-image: url(menuRDE.png);
+}
+
+
+/* =========================================================
+   TEXTURA DO TEMPO
+========================================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+
+    opacity: 0.07;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,.7) 0px,
+            rgba(255,255,255,.7) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+}
+
+
+/* =========================================================
+   EFEITO DE VIGNETTE
+========================================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 99;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 45%,
+            rgba(0,0,0,.65) 100%
+        );
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu {
+    position: relative;
+
+    width: min(1200px, 92%);
+
+    margin: auto;
+
+    padding: 50px 0 70px;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.titulo {
+    text-align: center;
+
+    margin-bottom: 50px;
+}
+
+.subtitulo {
+    color: #a99b78;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+}
+
+.titulo h1 {
+    margin-top: 12px;
+
+    font-size: clamp(42px, 7vw, 76px);
+
+    font-weight: normal;
+
+    letter-spacing: 8px;
+
+    color: #e8dfc8;
+
+    text-shadow:
+        0 0 20px rgba(205,170,90,.15),
+        3px 3px 0 #211d16;
+}
+
+.titulo p {
+    max-width: 650px;
+
+    margin: 15px auto 0;
+
+    color: #8d8d88;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   JOGADORES
+========================================================= */
+
+.jogadores {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-bottom: 45px;
+}
+
+.jogador {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 20px;
+
+    border: 1px solid #39342b;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(35,32,27,.9),
+            rgba(12,12,11,.9)
+        );
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+.icone {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid #81704d;
+
+    color: #cdbb8d;
+
+    font-size: 18px;
+}
+
+.jogador strong {
+    display: block;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    color: #c8b88e;
+}
+
+.jogador span {
+    font-size: 12px;
+
+    color: #777;
+}
+
+.conexao {
+    color: #927b4e;
+
+    font-size: 20px;
+
+    animation: pulsar 2.5s infinite;
+}
+
+@keyframes pulsar {
+
+    0%, 100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   LINHA DO TEMPO
+========================================================= */
+
+.fases {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+/*
+   Linha temporal passando por trás dos cartões.
+*/
+
+.fases::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    bottom: 0;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #665637 10%,
+            #665637 90%,
+            transparent
+        );
+
+    opacity: .15;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CARTÕES
+========================================================= */
+
+.fase {
+    position: relative;
+
+    min-height: 210px;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    border: 1px solid #34312b;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,32,27,.97),
+            rgba(16,16,15,.97)
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+}
+
+
+/* brilho interno */
+
+.fase::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(196,164,100,.08),
+            transparent 35%
+        );
+}
+
+
+/* Hover */
+
+.fase:hover {
+    transform: translateY(-6px);
+
+    border-color: #927b4e;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.4),
+        0 0 25px rgba(155,125,68,.08);
+}
+
+
+/* =========================================================
+   NÚMERO
+========================================================= */
+
+.numero {
+    position: absolute;
+
+    top: 12px;
+
+    right: 18px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    color: rgba(185,158,101,.10);
+}
+
+
+/* =========================================================
+   PERÍODO
+========================================================= */
+
+.fase .periodo {
+    color: #a9956c;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.fase h2 {
+    position: relative;
+
+    margin-top: 10px;
+
+    color: #ddd4bf;
+
+    font-size: 21px;
+
+    font-weight: normal;
+}
+
+
+/* =========================================================
+   DESCRIÇÃO
+========================================================= */
+
+.fase p {
+    position: relative;
+
+    margin-top: 10px;
+
+    max-width: 400px;
+
+    color: #777872;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   LINHA DECORATIVA
+========================================================= */
+
+.linha {
+    width: 35px;
+
+    height: 1px;
+
+    margin-top: 20px;
+
+    background: #806d48;
+
+    transition: width .3s ease;
+}
+
+.fase:hover .linha {
+    width: 90px;
+}
+
+
+/* =========================================================
+   REFERÊNCIAS HISTÓRICAS
+=========================================================
+
+   Os pseudo-elementos abaixo criam pequenos símbolos
+   relacionados ao período histórico de cada fase.
+
+========================================================= */
+
+
+/* =========================================================
+   01 — PRIMEIROS HUMANOS
+   Homo sapiens / Pré-História
+========================================================= */
+
+.fase:nth-child(1)::after {
+    content: "◉  ◌  ◉";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 18px;
+
+    color: rgba(177,143,82,.18);
+
+    font-size: 20px;
+
+    letter-spacing: 5px;
+}
+
+
+/* =========================================================
+   02 — PRIMEIRAS CIVILIZAÇÕES
+   Escrita / agricultura / cidades
+========================================================= */
+
+.fase:nth-child(2)::after {
+    content: "𒀭  ▦  𓂀";
+
+    position: absolute;
+
+    right: 18px;
+
+    bottom: 15px;
+
+    color: rgba(177,143,82,.20);
+
+    font-size: 21px;
+
+    letter-spacing: 5px;
+}
+
+
+/* =========================================================
+   03 — ANTIGUIDADE
+   Egito / China / Índia / Oriente Médio
+========================================================= */
+
+.fase:nth-child(3) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(54,43,28,.96),
+            rgba(18,16,13,.98)
+        );
+}
+
+.fase:nth-child(3)::after {
+    content: "𓂀   ☯   ॐ";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(201,166,92,.28);
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   04 — IDADE MÉDIA
+   Cristianismo / Judaísmo / Islamismo
+========================================================= */
+
+.fase:nth-child(4) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(34,31,37,.97),
+            rgba(15,14,17,.98)
+        );
+}
+
+.fase:nth-child(4)::after {
+    content: "✝   ✡   ☪";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(170,155,126,.25);
+
+    font-size: 23px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   05 — EXPANSÕES
+   Navegações / povos originários / encontros culturais
+========================================================= */
+
+.fase:nth-child(5) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,40,39,.97),
+            rgba(12,16,16,.98)
+        );
+}
+
+.fase:nth-child(5)::after {
+    content: "◈  ✦  ◈";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(82,146,136,.30);
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   06 — BRASIL COLONIAL
+   Povos originários / África / Portugal
+========================================================= */
+
+.fase:nth-child(6) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40,32,24,.98),
+            rgba(17,14,12,.98)
+        );
+}
+
+.fase:nth-child(6)::after {
+    content: "◆  ◇  ◆";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(163,116,62,.30);
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   07 — BRASIL IMPERIAL
+   Independência / Império
+========================================================= */
+
+.fase:nth-child(7) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(44,38,24,.98),
+            rgba(17,15,11,.98)
+        );
+}
+
+.fase:nth-child(7)::after {
+    content: "✦  ♜  ✦";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(194,157,70,.28);
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   08 — REVOLUÇÃO INDUSTRIAL
+   Máquinas / carvão / fábricas
+========================================================= */
+
+.fase:nth-child(8) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(34,35,34,.98),
+            rgba(13,14,14,.98)
+        );
+}
+
+.fase:nth-child(8)::after {
+    content: "⚙  ⚙  ⚙";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(137,137,130,.30);
+
+    font-size: 24px;
+
+    letter-spacing: 7px;
+}
+
+
+/* =========================================================
+   09 — SÉCULO XIX
+   Imperialismo / nacionalismos
+========================================================= */
+
+.fase:nth-child(9) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40,27,25,.97),
+            rgba(17,13,13,.98)
+        );
+}
+
+.fase:nth-child(9)::after {
+    content: "⚑  ◈  ⚑";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(151,87,70,.27);
+
+    font-size: 23px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   10 — SÉCULO XX
+   Guerras / tecnologia / mudanças
+========================================================= */
+
+.fase:nth-child(10) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(29,31,36,.98),
+            rgba(11,12,15,.98)
+        );
+}
+
+.fase:nth-child(10)::after {
+    content: "◉  ◇  ◉";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(111,130,151,.27);
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   11 — BRASIL REPUBLICANO
+   República / urbanização / sociedade
+========================================================= */
+
+.fase:nth-child(11) {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24,38,31,.98),
+            rgba(11,15,13,.98)
+        );
+}
+
+.fase:nth-child(11)::after {
+    content: "★  ◈  ★";
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: 15px;
+
+    color: rgba(91,143,109,.27);
+
+    font-size: 23px;
+
+    letter-spacing: 8px;
+}
+
+
+/* =========================================================
+   12 — FUTURO
+   Fragmentos / tecnologia / restauração
+========================================================= */
+
+.fase.futuro {
+    grid-column: span 3;
+
+    min-height: 230px;
+
+    border-color: #574d3b;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(108,89,52,.20),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #171716,
+            #0d0e0e
+        );
+}
+
+.fase.futuro h2 {
+    color: #d6c18e;
+}
+
+.fase.futuro .numero {
+    color: rgba(207,180,115,.20);
+}
+
+
+/* Símbolo do futuro */
+
+.fase.futuro::after {
+    content: "◈  ⟡  ◈";
+
+    position: absolute;
+
+    right: 35px;
+
+    bottom: 25px;
+
+    color: rgba(205,181,119,.32);
+
+    font-size: 34px;
+
+    letter-spacing: 10px;
+
+    animation: futuro 4s ease-in-out infinite;
+}
+
+@keyframes futuro {
+
+    0%, 100% {
+        opacity: .35;
+
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .9;
+
+        transform: scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+footer {
+    margin-top: 50px;
+
+    text-align: center;
+
+    color: #50504c;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .fases {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fase.futuro {
+        grid-column: span 2;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .menu {
+        padding: 30px 0;
+    }
+
+    .jogadores {
+        flex-direction: column;
+    }
+
+    .conexao {
+        transform: rotate(90deg);
+    }
+
+    .fases {
+        grid-template-columns: 1fr;
+    }
+
+    .fase.futuro {
+        grid-column: span 1;
+    }
+
+    .titulo h1 {
+        letter-spacing: 4px;
+    }
+
+    .fase.futuro::after {
+        right: 15px;
+
+        font-size: 25px;
+    }
+}

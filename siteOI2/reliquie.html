@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RELÍQUIA DAS ERAS</title>
+
+    <link rel="stylesheet" href="neymarcss.css">
+
+</head>
+
+
+<body>
+
+    <main class="menu">
+
+        <!-- =================================================
+             ABAS PRINCIPAIS
+        ================================================== -->
+        <nav class="abas" aria-label="Navegação principal">
+            <button class="aba ativa" type="button" data-aba="menu" aria-selected="true">
+                Menu
+            </button>
+            <button class="aba" type="button" data-aba="sobre" aria-selected="false">
+                Sobre
+            </button>
+            <button class="aba" type="button" data-aba="contato" aria-selected="false">
+                Contato
+            </button>
+            <button class="aba" type="button" data-aba="conquistas" aria-selected="false">
+                Conquistas/Níveis
+            </button>
+        </nav>
+
+        <style>
+            /* Abas do menu */
+            .abas {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 0 auto 30px;
+                padding: 10px;
+                position: relative;
+                z-index: 10;
+            }
+
+            .aba {
+                appearance: none;
+                border: 1px solid rgba(210, 178, 92, 0.35);
+                background: rgba(12, 14, 18, 0.78);
+                color: #c9c2ae;
+                padding: 12px 20px;
+                border-radius: 8px;
+                font: inherit;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                cursor: pointer;
+                transition: 0.25s ease;
+                backdrop-filter: blur(6px);
+            }
+
+            .aba:hover {
+                color: #f1d58a;
+                border-color: rgba(241, 213, 138, 0.75);
+                transform: translateY(-2px);
+            }
+
+            .aba.ativa {
+                color: #17130a;
+                background: #d8b968;
+                border-color: #f1d58a;
+                box-shadow: 0 0 18px rgba(216, 185, 104, 0.25);
+            }
+
+            .aba:focus-visible {
+                outline: 2px solid #f1d58a;
+                outline-offset: 3px;
+            }
+
+            .area-jogar {
+                text-align: center;
+                margin: 28px auto 10px;
+            }
+
+            .botao-jogar {
+                appearance: none;
+                border: 1px solid #f1d58a;
+                background: linear-gradient(135deg, #d8b968, #a9823d);
+                color: #17130a;
+                padding: 15px 46px;
+                border-radius: 9px;
+                font: inherit;
+                font-size: 1.08rem;
+                font-weight: 900;
+                letter-spacing: 2px;
+                cursor: pointer;
+                box-shadow: 0 0 24px rgba(216, 185, 104, 0.28);
+                transition: transform 0.25s ease, box-shadow 0.25s ease;
+            }
+
+            .botao-jogar:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 8px 30px rgba(216, 185, 104, 0.4);
+            }
+
+            .botao-jogar:focus-visible {
+                outline: 2px solid #fff0b5;
+                outline-offset: 4px;
+            }
+
+            .instrucao-jogar {
+                margin-top: 10px;
+                color: #aaa79c;
+                font-size: 0.9rem;
+            }
+
+            .fase.jogo-atual {
+                outline: 2px solid #e4c77d;
+                outline-offset: 5px;
+                box-shadow: 0 0 28px rgba(228, 199, 125, 0.25);
+            }
+
+            .painel-aba {
+                animation: aparecerAba 0.25s ease;
+            }
+
+            .painel-informativo {
+                max-width: 900px;
+                margin: 0 auto 40px;
+                padding: 32px;
+                border: 1px solid rgba(210, 178, 92, 0.28);
+                border-radius: 14px;
+                background: rgba(12, 14, 18, 0.82);
+                color: #d8d3c8;
+                line-height: 1.7;
+                box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            }
+
+            .painel-informativo h2 {
+                margin-bottom: 14px;
+                color: #e4c77d;
+            }
+
+            .painel-informativo p {
+                margin-bottom: 12px;
+            }
+
+            .lista-conquistas {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+                margin-top: 22px;
+            }
+
+            .conquista {
+                padding: 16px;
+                border: 1px solid rgba(210, 178, 92, 0.2);
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.035);
+            }
+
+            .conquista strong {
+                display: block;
+                color: #e4c77d;
+                margin-bottom: 5px;
+            }
+
+            @keyframes aparecerAba {
+                from {
+                    opacity: 0;
+                    transform: translateY(6px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 600px) {
+                .abas {
+                    gap: 7px;
+                    margin-bottom: 22px;
+                }
+
+                .aba {
+                    padding: 10px 13px;
+                    font-size: 0.9rem;
+                }
+
+                .lista-conquistas {
+                    grid-template-columns: 1fr;
+                }
+
+                .painel-informativo {
+                    padding: 22px;
+                }
+
+                .botao-jogar {
+                    width: min(100%, 280px);
+                    padding: 14px 25px;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .painel-aba,
+                .aba {
+                    animation: none;
+                    transition: none;
+                }
+            }
+        </style>
+
+
+        <section id="painel-menu" class="painel-aba" data-painel="menu">
+
+        <!-- =================================================
+             CABEÇALHO
+        ================================================== -->
+
+        <header class="titulo">
+
+            <div class="subtitulo">
+                Uma jornada através da humanidade
+            </div>
+
+            <h1>
+                RELÍQUIA DAS ERAS
+            </h1>
+
+            <p>
+                Dois jogadores. Duas épocas. Uma história quebrada.
+                Enquanto um explora o passado, o outro observa as
+                consequências no futuro.
+            </p>
+
+            <div class="area-jogar">
+                <button id="botao-jogar" class="botao-jogar" type="button">
+                    ▶ JOGAR
+                </button>
+                <p class="instrucao-jogar">
+                    Acesse os níveis e comece sua jornada pela história.
+                </p>
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             JOGADORES
+        ================================================== -->
+
+        <section class="jogadores">
+
+
+            <!-- PASSADO -->
+
+            <div class="jogador">
+
+                <div class="icone">
+                    ◐
+                </div>
+
+                <div>
+
+                    <strong>
+                        Jogador I
+                    </strong>
+
+                    <span>
+                        O Passado
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONEXÃO -->
+
+            <div class="conexao">
+                ⟷
+            </div>
+
+
+            <!-- FUTURO -->
+
+            <div class="jogador">
+
+                <div class="icone">
+                    ◑
+                </div>
+
+                <div>
+
+                    <strong>
+                        Jogador II
+                    </strong>
+
+                    <span>
+                        O Futuro
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             LINHA DO TEMPO
+        ================================================== -->
+
+        
+
+
+
+        <!-- =================================================
+             RODAPÉ
+        ================================================== -->
+
+        <footer>
+
+            RELÍQUIA DAS ERAS
+            <br>
+
+            A história depende dos dois.
+
+        </footer>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ABA SOBRE
+        ================================================== -->
+        <section id="painel-sobre" class="painel-aba painel-informativo" data-painel="sobre" hidden>
+            <h2>Sobre</h2>
+                <p>Nome dos estudantes: Gabriel B., Vinicius, Ântoni, Eduardo,Gabriel N.</p>
+                <p>Módulo 3 IFSC</p>
+                <p>Oficina de Integração II: Trabalho, Tecnologia e Poder</p>
+                <p>Objetivos:
+                    <br>• Reconhecer os conceitos trabalhados, tecnologia e poder como norteadores das discussões
+                    interdisciplinares e articuladores das diferentes áreas do conhecimento;
+                    <br>• Compreender as múltiplas relações entre as diferentes áreas do conhecimento por meio de
+                    atividades teóricas e práticas;
+                    <br>• Utilizar ferramentas relacionadas à construção interdisciplinar e integrada de conhecimentos
+                    numa perspectiva politécnica e de totalidade;
+                    <br>• Desenvolver materiais concretos, produções escritas e audiovisuais relacionados aos temas e temáticas do semestre;
+                    <br>• Articular teoria e prática, vinculando trabalho intelectual com atividades práticas
+                    experimentais;
+                    <br>• Desenvolver atividades integradoras de iniciação científica e no campo artístico-cultura.
+                    </p>
+                <p>Professores da UC: </p>
+            
+            <h2>Sobre o Jogo</h2>
+            <p>
+                <strong>RELÍQUIA DAS ERAS</strong> é uma jornada através da humanidade.
+                Um jogador explora diferentes momentos da história enquanto
+                conecta passado e futuro.
+            </p>
+            
+            <p>
+                O objetivo é reconstruir a memória da humanidade por meio das
+                descobertas feitas ao longo das fases, desde a Pré-História
+                até o Futuro.
+            </p>
+            <p>
+                Cada fase representa um período ou transformação importante,
+                criando uma linha do tempo que conecta diferentes sociedades,
+                tecnologias e acontecimentos.
+            </p>
+            <h2>Sobre: "Motivação"</h2>
+            <p>A criação do jogo sobre a história da humanidade surgiu a partir de 
+                pesquisas e conversas com os professores, com o 
+                objetivo de definir um tema relevante e educativo para o projeto,entendemos que os alunos 
+                apresentavam dificuldades nos conteúdos de história. Através dea pesquisa de campo com alunos e 
+                professores identificamos os principais temas de maior dificuldade dos alunos relacionadas no gráfico abaixo:
+            </p>
+            <img src="gráficopesquisa.png" alt="Gráfico da nossa pesquisa" width="100%">
+            <p>
+                Após analisar diferentes possibilidades, decidimos desenvolver um jogo que abordasse os 
+                principais acontecimentos da história da humanidade, buscando tornar o aprendizado mais dinâmico, 
+                interativo e interessante. Dessa forma, pretendemos incentivar o conhecimento histórico, 
+                estimular a curiosidade dos jogadores e facilitar a compreensão dos acontecimentos que 
+                contribuíram para a formação da sociedade atual.</p>
+        </section>
+
+        <!-- =================================================
+             ABA CONTATO
+        ================================================== -->
+        <section id="painel-contato" class="painel-aba painel-informativo" data-painel="contato" hidden>
+            <h2>Contato</h2>
+          
+            <p>
+                <strong>E-mail:</strong> epochoirde@gmail.com
+            </p>
+            <p>
+                <strong>Equipe:</strong> PuzzleOI
+            </p>
+            <p>
+                <strong>Projeto:</strong> EpochOI
+            </p>
+        </section>
+
+        <!-- =================================================
+             ABA CONQUISTAS / NÍVEIS
+        ================================================== -->
+        <section id="painel-conquistas" class="painel-aba painel-informativo" data-painel="conquistas" hidden>
+            <h2>Conquistas / Níveis</h2>
+            <p>
+                Conforme os jogadores avançam pela linha do tempo, novas
+                conquistas podem ser desbloqueadas.
+            </p>
+
+            <section class="fases">
+
+
+            <!-- =================================================
+                 FASE 01
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Pré-História"
+                data-tema="Primeiros humanos"
+            >
+
+                <span class="numero">
+                    01
+                </span>
+
+
+                <span class="periodo">
+                    Pré-História
+                </span>
+
+
+                <h2>
+                    As Primeiras Pegadas
+                </h2>
+
+
+                <p>
+                    A humanidade começa sua jornada.
+                    Homo sapiens, sobrevivência, migrações,
+                    ferramentas, domínio do fogo e o início
+                    da sedentarização.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Homo sapiens
+                    </span>
+
+                    <span>
+                        Caçadores-coletores
+                    </span>
+
+                    <span>
+                        Fogo
+                    </span>
+
+                    <span>
+                        Pinturas rupestres
+                    </span>
+
+                    <span>
+                        Agricultura
+                    </span>
+
+                    <span>
+                        Primeiros assentamentos
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 02
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Primeiras Civilizações"
+                data-tema="Sociedades organizadas"
+            >
+
+                <span class="numero">
+                    02
+                </span>
+
+
+                <span class="periodo">
+                    Primeiras Civilizações
+                </span>
+
+
+                <h2>
+                    O Nascimento das Sociedades
+                </h2>
+
+
+                <p>
+                    O surgimento das cidades, da agricultura,
+                    da escrita, das leis e das primeiras
+                    sociedades urbanas organizadas.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Mesopotâmia
+                    </span>
+
+                    <span>
+                        Sumérios
+                    </span>
+
+                    <span>
+                        Escrita cuneiforme
+                    </span>
+
+                    <span>
+                        Cidades-Estado
+                    </span>
+
+                    <span>
+                        Agricultura
+                    </span>
+
+                    <span>
+                        Primeiras leis
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 03
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Antiguidade"
+                data-tema="África, Ásia e Oriente Médio"
+            >
+
+                <span class="numero">
+                    03
+                </span>
+
+
+                <span class="periodo">
+                    Antiguidade
+                </span>
+
+
+                <h2>
+                    Entre Continentes
+                </h2>
+
+
+                <p>
+                    Grandes sociedades florescem na África,
+                    Ásia e Oriente Médio, desenvolvendo
+                    religiões, filosofias, sistemas políticos,
+                    ciência, arte e escrita.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        🇪🇬 Egito Antigo
+                    </span>
+
+                    <span>
+                        𓂀 Hieróglifos
+                    </span>
+
+                    <span>
+                        🏺 Faraós
+                    </span>
+
+                    <span>
+                        🇨🇳 China Antiga
+                    </span>
+
+                    <span>
+                        ☯ Filosofias chinesas
+                    </span>
+
+                    <span>
+                        🕉 Índia Antiga
+                    </span>
+
+                    <span>
+                        Hinduísmo
+                    </span>
+
+                    <span>
+                        Judaísmo
+                    </span>
+
+                    <span>
+                        Hebreus
+                    </span>
+
+                    <span>
+                        Impérios Persas
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 04
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Idade Média"
+                data-tema="Transformações religiosas e sociais"
+            >
+
+                <span class="numero">
+                    04
+                </span>
+
+
+                <span class="periodo">
+                    Idade Média
+                </span>
+
+
+                <h2>
+                    Um Mundo em Transformação
+                </h2>
+
+
+                <p>
+                    Reinos, impérios, rotas comerciais e
+                    diferentes tradições religiosas transformam
+                    as sociedades da Europa, África e Ásia.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        ✝ Cristianismo
+                    </span>
+
+                    <span>
+                        ✡ Judaísmo
+                    </span>
+
+                    <span>
+                        ☪ Islamismo
+                    </span>
+
+                    <span>
+                        Império Bizantino
+                    </span>
+
+                    <span>
+                        Reinos Africanos
+                    </span>
+
+                    <span>
+                        China Medieval
+                    </span>
+
+                    <span>
+                        Mundo Islâmico
+                    </span>
+
+                    <span>
+                        Feudalismo
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 05
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Expansões e Mudanças"
+                data-tema="Conexões entre regiões"
+            >
+
+                <span class="numero">
+                    05
+                </span>
+
+
+                <span class="periodo">
+                    Expansões e Mudanças
+                </span>
+
+
+                <h2>
+                    Novos Horizontes
+                </h2>
+
+
+                <p>
+                    Diferentes povos estabelecem novas conexões
+                    através de rotas comerciais, migrações,
+                    navegações e intercâmbios culturais.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Rotas da Seda
+                    </span>
+
+                    <span>
+                        Navegações
+                    </span>
+
+                    <span>
+                        África
+                    </span>
+
+                    <span>
+                        Ásia
+                    </span>
+
+                    <span>
+                        Europa
+                    </span>
+
+                    <span>
+                        Povos das Américas
+                    </span>
+
+                    <span>
+                        Intercâmbio cultural
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 06
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Brasil Colonial"
+                data-tema="Povos e colonização"
+            >
+
+                <span class="numero">
+                    06
+                </span>
+
+
+                <span class="periodo">
+                    Brasil Colonial
+                </span>
+
+
+                <h2>
+                    Terra em Disputa
+                </h2>
+
+
+                <p>
+                    O território que hoje chamamos de Brasil
+                    reúne povos originários, colonizadores
+                    europeus e populações africanas trazidas
+                    pela escravização.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        🪶 Povos Originários
+                    </span>
+
+                    <span>
+                        Tupi
+                    </span>
+
+                    <span>
+                        Guarani
+                    </span>
+
+                    <span>
+                        Povos Jê
+                    </span>
+
+                    <span>
+                        Diversidade indígena
+                    </span>
+
+                    <span>
+                        Portugal
+                    </span>
+
+                    <span>
+                        África
+                    </span>
+
+                    <span>
+                        Escravização
+                    </span>
+
+                    <span>
+                        Engenhos
+                    </span>
+
+                    <span>
+                        Quilombos
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 07
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Brasil Imperial"
+                data-tema="Independência e Império"
+            >
+
+                <span class="numero">
+                    07
+                </span>
+
+
+                <span class="periodo">
+                    Brasil Imperial
+                </span>
+
+
+                <h2>
+                    Um País se Forma
+                </h2>
+
+
+                <p>
+                    A independência do Brasil e a formação do
+                    Império são acompanhadas por disputas,
+                    transformações sociais e econômicas.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Independência
+                    </span>
+
+                    <span>
+                        Primeiro Reinado
+                    </span>
+
+                    <span>
+                        Período Regencial
+                    </span>
+
+                    <span>
+                        Segundo Reinado
+                    </span>
+
+                    <span>
+                        Café
+                    </span>
+
+                    <span>
+                        Abolição
+                    </span>
+
+                    <span>
+                        Imigração
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 08
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Revolução Industrial"
+                data-tema="Máquinas e fábricas"
+            >
+
+                <span class="numero">
+                    08
+                </span>
+
+
+                <span class="periodo">
+                    Revolução Industrial
+                </span>
+
+
+                <h2>
+                    A Era das Máquinas
+                </h2>
+
+
+                <p>
+                    Máquinas, fábricas, carvão, ferrovias e
+                    novas formas de trabalho transformam
+                    profundamente as sociedades.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        ⚙ Máquina a vapor
+                    </span>
+
+                    <span>
+                        Carvão
+                    </span>
+
+                    <span>
+                        Fábricas
+                    </span>
+
+                    <span>
+                        Ferrovias
+                    </span>
+
+                    <span>
+                        Urbanização
+                    </span>
+
+                    <span>
+                        Trabalhadores
+                    </span>
+
+                    <span>
+                        Movimentos operários
+                    </span>
+
+                    <span>
+                        Novas tecnologias
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 09
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Século XIX"
+                data-tema="Imperialismo e nacionalismos"
+            >
+
+                <span class="numero">
+                    09
+                </span>
+
+
+                <span class="periodo">
+                    Século XIX
+                </span>
+
+
+                <h2>
+                    Impérios e Nações
+                </h2>
+
+
+                <p>
+                    Estados nacionais, industrialização,
+                    imperialismo e novas ideias políticas
+                    transformam o mundo.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Nacionalismos
+                    </span>
+
+                    <span>
+                        Imperialismo
+                    </span>
+
+                    <span>
+                        Industrialização
+                    </span>
+
+                    <span>
+                        Ciência
+                    </span>
+
+                    <span>
+                        Comunicações
+                    </span>
+
+                    <span>
+                        Ferrovias
+                    </span>
+
+                    <span>
+                        Estados nacionais
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 10
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Século XX"
+                data-tema="Conflitos e transformações"
+            >
+
+                <span class="numero">
+                    10
+                </span>
+
+
+                <span class="periodo">
+                    Século XX
+                </span>
+
+
+                <h2>
+                    Um Século em Conflito
+                </h2>
+
+
+                <p>
+                    Guerras mundiais, revoluções, movimentos
+                    sociais, avanços científicos e tecnológicos
+                    transformam a vida humana.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Primeira Guerra Mundial
+                    </span>
+
+                    <span>
+                        Segunda Guerra Mundial
+                    </span>
+
+                    <span>
+                        Revoluções
+                    </span>
+
+                    <span>
+                        Descolonização
+                    </span>
+
+                    <span>
+                        Direitos civis
+                    </span>
+
+                    <span>
+                        Computadores
+                    </span>
+
+                    <span>
+                        Corrida espacial
+                    </span>
+
+                    <span>
+                        Internet
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 11
+            ================================================== -->
+
+            <article
+                class="fase"
+                data-periodo="Brasil Republicano"
+                data-tema="Transformações políticas e sociais"
+            >
+
+                <span class="numero">
+                    11
+                </span>
+
+
+                <span class="periodo">
+                    Brasil Republicano
+                </span>
+
+
+                <h2>
+                    Um Novo Brasil
+                </h2>
+
+
+                <p>
+                    A República brasileira atravessa diferentes
+                    períodos políticos e sociais, acompanhada
+                    pela urbanização e pela modernização.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        República
+                    </span>
+
+                    <span>
+                        Urbanização
+                    </span>
+
+                    <span>
+                        Industrialização brasileira
+                    </span>
+
+                    <span>
+                        Movimentos sociais
+                    </span>
+
+                    <span>
+                        Cultura brasileira
+                    </span>
+
+                    <span>
+                        Constituição
+                    </span>
+
+                    <span>
+                        Democracia
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 FASE 12 — FUTURO
+            ================================================== -->
+
+            <article
+                class="fase futuro"
+                data-periodo="Futuro"
+                data-tema="Consequências e restauração"
+            >
+
+                <span class="numero">
+                    12
+                </span>
+
+
+                <span class="periodo">
+                    Futuro
+                </span>
+
+
+                <h2>
+                    Consequências e Restauração
+                </h2>
+
+
+                <p>
+                    Os RELÍQUIA DAS ERAS foram espalhados.
+                    Cada acontecimento da história deixou uma
+                    marca no futuro. Os dois jogadores precisam
+                    conectar suas descobertas para reconstruir
+                    a memória da humanidade.
+                </p>
+
+
+                <div class="referencias">
+
+                    <span>
+                        Fragmentos
+                    </span>
+
+                    <span>
+                        Memória
+                    </span>
+
+                    <span>
+                        Tecnologia
+                    </span>
+
+                    <span>
+                        Consequências
+                    </span>
+
+                    <span>
+                        Preservação histórica
+                    </span>
+
+                    <span>
+                        Futuro da humanidade
+                    </span>
+
+                </div>
+
+
+                <div class="linha"></div>
+
+            </article>
+
+
+        </section>
+        </section>
+
+        <script>
+            (() => {
+                const abas = document.querySelectorAll(".aba");
+                const paineis = document.querySelectorAll("[data-painel]");
+
+                function abrirAba(nome) {
+                    abas.forEach((aba) => {
+                        const ativa = aba.dataset.aba === nome;
+                        aba.classList.toggle("ativa", ativa);
+                        aba.setAttribute("aria-selected", ativa ? "true" : "false");
+                    });
+
+                    paineis.forEach((painel) => {
+                        painel.hidden = painel.dataset.painel !== nome;
+                    });
+                }
+
+                abas.forEach((aba) => {
+                    aba.addEventListener("click", () => abrirAba(aba.dataset.aba));
+                });
+
+                const botaoJogar = document.getElementById("botao-jogar");
+                const primeiraFase = document.querySelector(".fase");
+
+                if (botaoJogar && primeiraFase) {
+                    botaoJogar.addEventListener("click", () => {
+                        abrirAba("conquistas");
+                        primeiraFase.classList.add("jogo-atual");
+                        primeiraFase.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+                        setTimeout(() => {
+                            primeiraFase.classList.remove("jogo-atual");
+                        }, 1800);
+                    });
+                }
+            })();
+        </script>
+
+    </main>
+
+
+</body>
+
+</html>
