@@ -1,150 +1,88 @@
 <!DOCTYPE html>
-<!-- Primeira linha obrigatória: informa ao navegador que é HTML5 -->
 <html lang="pt-br">
-<!-- lang define o idioma: importante para acessibilidade e SEO -->
-
 <head>
-    <!-- O head guarda configurações que NÃO aparecem na página -->
     <meta charset="UTF-8">
-    <!-- charset garante que acentos (ç, ã, é) apareçam corretamente -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- viewport: faz a página se adaptar ao celular (responsividade) -->
-    <title>EaseHouse</title>
-    <!-- title: é o texto que aparece na ABA do navegador -->
-    <link rel="stylesheet" href="estilo.css">
-    <!-- AQUI o HTML aponta para o arquivo de estilo separado -->
+    <meta name="description" content="Conheça aspiradores práticos para deixar sua casa limpa com menos esforço.">
+    <title>EaseHouse | Limpeza inteligente</title>
+    <link rel="stylesheet" href="estilo_aspiradores.css">
 </head>
-
 <body>
-    <!-- O body guarda TODO o conteúdo visível da página -->
-
-    <!-- ============ HEADER ============ -->
-    <!-- Cabeçalho: logo + menu de navegação -->
-    <header>
-        <h1 class="logo">EaseHouse</h1>
-        <nav>
-            <!-- nav: agrupa os links de navegação do site -->
-            <a href="#hero">Início</a>
-            <a href="#produtos">Eletrodomésticos</a>
-            <a href="#depoimentos">Depoimentos</a>
-            <a href="#faq">Dúvidas</a>
+    <header class="topo">
+        <a class="logo" href="#inicio" aria-label="EaseHouse - início"><span class="logo-icone">✦</span> EaseHouse</a>
+        <nav aria-label="Navegação principal">
+            <a href="#inicio">Início</a>
+            <a href="#produtos">Aspiradores</a>
+            <a href="#vantagens">Vantagens</a>
+            <a href="#duvidas">Dúvidas</a>
         </nav>
     </header>
 
-    <!-- ============ HERO SECTION ============ -->
-    <!-- A primeira impressão: o que aparece sem rolar a página -->
-    <section id="hero" class="hero">
-        <div class="hero-texto">
-            <h2>Traga eletrodomésticos para sua Casa</h2>
-            <!-- h2 aqui, porque o h1 já foi usado no logo -->
-            <p>Tecnologia selecionada para cada canto da sua casa.
-               Entrega rápida e garantia por 30 dias.</p>
-            <!-- CTA: Call to Action — o botão que converte -->
-            <a href="#produtos" class="botao-cta">Ver Eletrodomésticos</a>
-        </div>
-        <img src="Aspirador.png" alt="Robô Aspirador">
-        <!-- alt é OBRIGATÓRIO: descreve a imagem para leitores de tela -->
-    </section>
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-texto">
+                <span class="etiqueta">LIMPEZA SEM COMPLICAÇÃO</span>
+                <h1>Uma casa limpa.<br><span>Mais tempo pra você.</span></h1>
+                <p>Descubra uma maneira mais prática de cuidar da sua casa com aspiradores pensados para facilitar a rotina.</p>
+                <a href="#produtos" class="botao">Conheça os modelos <span aria-hidden="true">→</span></a>
+                <div class="mini-beneficios">
+                    <span>✓ Praticidade no dia a dia</span>
+                    <span>✓ Design moderno</span>
+                </div>
+            </div>
+            <div class="hero-imagem">
+                <div class="circulo"></div>
+                <img src="Aspirador.png" alt="Aspirador robô branco para limpeza automática">
+                <div class="selo"><span>CASA</span><strong>mais leve</strong><span>TODO DIA</span></div>
+            </div>
+        </section>
 
-    <!-- ============ SHOWCASE DE PRODUTOS ============ -->
-    <!-- Vitrine: grid de cards com os produtos -->
-    <section id="produtos" class="produtos">
-        <h2>Nossas plantas</h2>
-        <ul class="grade-produtos">
-            <!-- ul + li: lista semântica para os cards -->
-            <li class="card">
-                <img src="https://placehold.co/300x200/7C3AED/fff?text=Samambaia"
-                     alt="Samambaia em vaso suspenso">
-                <h3>Samambaia</h3>
-                <p>Perfeita para ambientes úmidos.</p>
-                <span class="preco">R$ 39,90</span>
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/300x200/00D4FF/000?text=Suculenta"
-                     alt="Suculenta em vaso pequeno de cerâmica">
-                <h3>Suculenta</h3>
-                <p>Pouca água, muita beleza.</p>
-                <span class="preco">R$ 19,90</span>
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/300x200/EC4899/fff?text=Costela"
-                     alt="Costela de adão em vaso branco">
-                <h3>Costela de Adão</h3>
-                <p>A queridinha das decorações.</p>
-                <span class="preco">R$ 59,90</span>
-            </li>
-            <li class="card">
-                <img src="https://placehold.co/300x200/10B981/fff?text=Jiboia"
-                     alt="Jiboia pendurada em suporte de parede">
-                <h3>Jiboia</h3>
-                <p>Cresce até em cantos escuros.</p>
-                <span class="preco">R$ 29,90</span>
-            </li>
-        </ul>
-    </section>
+        <section id="vantagens" class="vantagens">
+            <div><span class="vantagem-icone">⌂</span><h3>Rotina mais fácil</h3><p>Menos esforço para manter os ambientes em ordem.</p></div>
+            <div><span class="vantagem-icone">◷</span><h3>Ganhe tempo</h3><p>Use seu tempo com o que realmente importa.</p></div>
+            <div><span class="vantagem-icone">✧</span><h3>Design inteligente</h3><p>Modelos práticos que combinam com sua casa.</p></div>
+        </section>
 
-    <!-- ============ PROVA SOCIAL ============ -->
-    <!-- Depoimentos: pessoas confiam em pessoas -->
-    <section id="depoimentos" class="depoimentos">
-        <h2>Quem comprou, recomenda</h2>
-        <div class="grade-depoimentos">
-            <figure class="depoimento">
-                <!-- figure: marca um conteúdo ilustrativo independente -->
-                <img src="https://placehold.co/80x80/7C3AED/fff?text=A"
-                     alt="Foto de perfil da cliente Ana">
-                <blockquote>"Minha casa ficou outro clima!"</blockquote>
-                <figcaption>Ana, Chapecó</figcaption>
-                <!-- figcaption: legenda da figure -->
-            </figure>
-            <figure class="depoimento">
-                <img src="https://placehold.co/80x80/00D4FF/000?text=B"
-                     alt="Foto de perfil do cliente Bruno">
-                <blockquote>"Chegou super bem embalada."</blockquote>
-                <figcaption>Bruno, Xaxim</figcaption>
-            </figure>
-            <figure class="depoimento">
-                <img src="https://placehold.co/80x80/10B981/fff?text=C"
-                     alt="Foto de perfil da cliente Carla">
-                <blockquote>"Atendimento nota 10!"</blockquote>
-                <figcaption>Carla, Chapecó</figcaption>
-            </figure>
-        </div>
-    </section>
+        <section id="produtos" class="produtos">
+            <div class="secao-titulo">
+                <span class="etiqueta">ESCOLHA O SEU</span>
+                <h2>Encontre seu parceiro de limpeza</h2>
+                <p>Opções para diferentes necessidades e estilos de vida.</p>
+            </div>
+            <div class="grade-produtos">
+                <article class="card">
+                    <div class="produto-foto foto-robo"><img src="Aspirador.png" alt="Aspirador robô branco"></div>
+                    <div class="card-conteudo"><span class="tipo">AUTOMÁTICO</span><h3>Aspirador Robô</h3><p>Ajuda a manter o chão limpo enquanto você cuida de outras tarefas.</p><a href="#duvidas" class="link-produto">Tenho interesse <span>→</span></a></div>
+                </article>
+                <article class="card">
+                    <div class="produto-foto foto-vertical"><div class="desenho-aspirador">│<span>●</span>│</div></div>
+                    <div class="card-conteudo"><span class="tipo">VERSÁTIL</span><h3>Aspirador Vertical</h3><p>Prático para alcançar diferentes cantos e facilitar a limpeza diária.</p><a href="#duvidas" class="link-produto">Tenho interesse <span>→</span></a></div>
+                </article>
+                <article class="card">
+                    <div class="produto-foto foto-portatil"><div class="desenho-portatil">▰</div></div>
+                    <div class="card-conteudo"><span class="tipo">COMPACTO</span><h3>Aspirador Portátil</h3><p>Uma opção compacta para pequenas limpezas e áreas de difícil acesso.</p><a href="#duvidas" class="link-produto">Tenho interesse <span>→</span></a></div>
+                </article>
+            </div>
+            <p class="aviso-produtos">Os modelos ilustrativos representam categorias de produtos. Consulte disponibilidade e especificações antes da compra.</p>
+        </section>
 
-    <!-- ============ FAQ ============ -->
-    <!-- Acordeão NATIVO: details + summary, sem JavaScript! -->
-    <section id="faq" class="faq">
-        <h2>Dúvidas frequentes</h2>
+        <section class="chamada">
+            <div><span class="etiqueta">SEU DIA A DIA, MAIS SIMPLES</span><h2>Limpar pode ser mais fácil.</h2><p>Encontre uma opção que combine com a sua rotina.</p></div>
+            <a href="#produtos" class="botao botao-claro">Ver opções <span aria-hidden="true">→</span></a>
+        </section>
 
-        <details>
-            <summary>Vocês entregam em toda a cidade?</summary>
-            <p>Sim! Entregamos em Chapecó e região em até 2 dias úteis.</p>
-        </details>
+        <section id="duvidas" class="faq">
+            <div class="secao-titulo"><span class="etiqueta">PRECISA DE AJUDA?</span><h2>Dúvidas frequentes</h2></div>
+            <details><summary>Qual aspirador é ideal para mim?</summary><p>Depende do espaço e da sua rotina. O robô ajuda na manutenção diária, o vertical é versátil e o portátil é útil para limpezas menores.</p></details>
+            <details><summary>Onde vejo as especificações de cada modelo?</summary><p>Confira as informações do produto escolhido, como autonomia, potência, capacidade e acessórios, antes de comprar.</p></details>
+            <details><summary>Os produtos têm garantia?</summary><p>As condições de garantia variam conforme o modelo e o vendedor. Consulte os termos informados no momento da compra.</p></details>
+        </section>
+    </main>
 
-        <details>
-            <summary>E se a planta morrer?</summary>
-            <p>Temos 30 dias de garantia de vida. Trocamos sem custo.</p>
-        </details>
-
-        <details>
-            <summary>Como escolho a planta ideal?</summary>
-            <p>Chame no WhatsApp: indicamos conforme a luz do seu ambiente.</p>
-        </details>
-    </section>
-
-    <!-- ============ FOOTER + NEWSLETTER ============ -->
-    <!-- Rodapé: fecha a navegação com formulário de e-mail -->
     <footer>
-        <form class="newsletter">
-            <label for="email">Receba dicas de cuidado com plantas:</label>
-            <!-- label com for ligado ao id do input: acessibilidade -->
-            <input type="email" id="email" name="email"
-                   placeholder="seu@email.com" required>
-            <!-- type="email" valida o formato sozinho no navegador -->
-            <button type="submit">Cadastrar</button>
-        </form>
-        <p class="copyright">© 2026 — GreenNest • Desenvolvido pela turma de Web Design</p>
+        <a class="logo" href="#inicio"><span class="logo-icone">✦</span> EaseHouse</a>
+        <p>Praticidade para cuidar melhor da sua casa.</p>
+        <small>© 2026 EaseHouse. Todos os direitos reservados.</small>
     </footer>
-
 </body>
 </html>
