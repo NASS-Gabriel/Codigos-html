@@ -1,1 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F2EC">
+<title>Lume Skincare · uma rotina de pele que cabe na sua vida</title>
+<meta name="description" content="Rotina de skincare montada para o seu tipo de pele, com produtos escolhidos e orientação por escrito.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =====================================================
+   PERSONALIZE AQUI: cores, fontes, arredondamento
+   ===================================================== */
+:root{
+  --fundo:#F7F2EC;
+  --fundo-alt:#EFE6DC;
+  --rosa:#E8CFC4;            /* detalhes suaves */
+  --verde:#2F4A3A;           /* cor principal */
+  --verde-escuro:#1F3327;
+  --verde-claro:#DDE7DC;
+  --texto:#222B25;
+  --texto-suave:#66705F;
+  --linha:#E0D5C8;
+  --fonte-titulo:"Fraunces",Georgia,serif;
+  --fonte-texto:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --largura:1120px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fonte-texto);background:var(--fundo);color:var(--texto);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--verde);outline-offset:3px}
+.wrap{max-width:var(--largura);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--fonte-titulo);font-weight:400;line-height:1.1;letter-spacing:-.015em}
+h1{font-size:clamp(2.6rem,6vw,4.4rem)}
+h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:.8rem}
+h3{font-size:1.3rem;letter-spacing:-.01em}
+em{font-style:italic;color:var(--verde)}
+section{padding:100px 0}
+.lead{color:var(--texto-suave);max-width:52ch;font-size:1.08rem}
+.centro{text-align:center}
+.centro .lead{margin:0 auto}
 
+/* botões */
+.btn{display:inline-block;padding:15px 30px;border-radius:999px;background:var(--verde);color:#fff;font-weight:700;text-decoration:none;border:1.5px solid var(--verde);transition:transform .2s,background .2s,box-shadow .2s;font-size:.98rem}
+.btn:hover{background:var(--verde-escuro);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(31,51,39,.55)}
+.btn.sec{background:transparent;color:var(--verde)}
+.btn.sec:hover{background:var(--verde);color:#fff}
+.btn.claro{background:#fff;color:var(--verde-escuro);border-color:#fff}
+.btn.claro:hover{background:var(--rosa);border-color:var(--rosa)}
+.acoes{display:flex;gap:12px;flex-wrap:wrap}
+
+/* aviso e topo */
+.aviso{background:var(--verde-escuro);color:#F2EBE2;text-align:center;font-size:.9rem;padding:10px 16px}
+.aviso a{font-weight:700}
+header{position:sticky;top:0;z-index:20;background:rgba(247,242,236,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--linha);padding-top:env(safe-area-inset-top,0px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.logo{font-family:var(--fonte-titulo);font-size:1.5rem;text-decoration:none;letter-spacing:-.02em}
+.logo i{color:var(--verde)}
+nav{display:flex;gap:28px;align-items:center}
+nav a{text-decoration:none;color:var(--texto-suave);font-weight:500;font-size:.96rem}
+nav a:hover{color:var(--verde)}
+nav .btn{padding:10px 22px;color:#fff;font-size:.92rem}
+
+/* fotos com formato de arco; sem imagem, fica um degradê suave */
+.foto{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--rosa),var(--verde-claro));border-radius:24px;aspect-ratio:4/5}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.arco{border-radius:999px 999px 24px 24px}
+
+/* hero */
+.hero{padding:56px 0 100px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-180px;top:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--rosa) 0,rgba(232,207,196,0) 68%);opacity:.7;z-index:0}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{margin-bottom:24px}
+.hero .lead{font-size:1.18rem;margin-bottom:34px}
+.hero .nota{margin-top:18px;font-size:.93rem;color:var(--texto-suave)}
+.hero .nota a{color:var(--verde);font-weight:700}
+.selos{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.selos span{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:7px 15px;font-size:.88rem;font-weight:500;color:var(--texto-suave)}
+.hero-foto{position:relative}
+.hero-foto .foto{aspect-ratio:4/5;max-width:440px;margin-left:auto}
+.flutua{position:absolute;left:-8px;bottom:42px;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:0 18px 40px -18px rgba(31,51,39,.4);display:flex;gap:12px;align-items:center;font-size:.9rem;line-height:1.3}
+.flutua b{display:block;font-family:var(--fonte-titulo);font-weight:500;font-size:1.05rem}
+.flutua .ponto{width:38px;height:38px;border-radius:50%;background:var(--verde-claro);display:grid;place-items:center;color:var(--verde);font-weight:700}
+@keyframes entra{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero .wrap>*{animation:entra .8s ease both}
+.hero .wrap>*:last-child{animation-delay:.15s}
+
+/* faixa */
+.faixa{background:var(--verde);color:#EDE5DA;padding:20px 0}
+.faixa .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:wrap;font-family:var(--fonte-titulo);font-style:italic;font-size:1.1rem}
+
+/* citação */
+.citacao{background:var(--fundo-alt)}
+.citacao blockquote{font-family:var(--fonte-titulo);font-size:clamp(1.7rem,3.6vw,2.7rem);max-width:24ch;margin:0 auto 18px;line-height:1.2;letter-spacing:-.015em}
+.citacao p{color:var(--texto-suave);max-width:52ch;margin:0 auto}
+
+/* passos */
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:52px}
+.passo .foto{aspect-ratio:1/1.05;margin-bottom:22px}
+.passo .n{position:absolute;left:16px;top:16px;z-index:1;width:42px;height:42px;border-radius:50%;background:#fff;color:var(--verde);display:grid;place-items:center;font-family:var(--fonte-titulo);font-size:1.15rem}
+.passo p{color:var(--texto-suave);margin-top:8px}
+
+/* sobre */
+.sobre{background:var(--verde-claro)}
+.sobre .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:center}
+.sobre .foto{aspect-ratio:3/4}
+.sobre p{color:#3C4A3F}
+.sobre p+p{margin-top:14px}
+.numeros{display:grid;grid-template-columns:repeat(3,auto);gap:12px 40px;justify-content:start;margin-top:34px;padding-top:28px;border-top:1px solid rgba(47,74,58,.25)}
+.numeros b{font-family:var(--fonte-titulo);font-weight:400;font-size:2.6rem;display:block;line-height:1;color:var(--verde-escuro)}
+.numeros span{font-size:.92rem;color:#51604F}
+
+/* produtos */
+.produtos{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px}
+.produto{background:#fff;border-radius:24px;padding:14px 14px 22px;border:1px solid var(--linha);transition:transform .25s,box-shadow .25s}
+.produto:hover{transform:translateY(-6px);box-shadow:0 26px 40px -26px rgba(31,51,39,.35)}
+.produto .foto{aspect-ratio:1/1;border-radius:16px;margin-bottom:16px}
+.produto .info{padding:0 6px}
+.chip{display:inline-block;font-size:.78rem;font-weight:700;color:var(--verde);background:var(--verde-claro);border-radius:999px;padding:3px 11px;margin-bottom:9px}
+.produto h3{font-size:1.18rem}
+.produto .tam{color:var(--texto-suave);font-size:.9rem}
+.produto .rodape{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:8px}
+.preco{font-family:var(--fonte-titulo);font-size:1.3rem}
+.produto .btn{padding:9px 18px;font-size:.88rem}
+
+/* kit */
+.kit{background:var(--verde-escuro);color:#F2EBE2;overflow:hidden}
+.kit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.kit em{color:var(--rosa)}
+.kit p{color:#C9D3C8;margin:14px 0 28px;max-width:46ch}
+.kit .foto{aspect-ratio:1/1;background:linear-gradient(160deg,#3D5C49,#2A4234)}
+.kit ul{list-style:none;padding:0;margin:0 0 28px;display:grid;gap:8px}
+.kit li{padding-left:28px;position:relative}
+.kit li::before{content:"✓";position:absolute;left:0;color:var(--rosa);font-weight:700}
+
+/* depoimentos */
+.depo{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.depo figure{background:#fff;border:1px solid var(--linha);border-radius:24px;padding:30px}
+.depo blockquote{font-family:var(--fonte-titulo);font-size:1.2rem;line-height:1.4;margin-bottom:18px}
+.depo figcaption{color:var(--texto-suave);font-size:.92rem}
+
+/* cuidado contínuo */
+.cuidados{background:var(--fundo-alt)}
+.cuidados .grade{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:44px}
+.cuidados .grade div{border-top:2px solid var(--verde);padding-top:20px}
+.cuidados p{color:var(--texto-suave);margin-top:8px}
+
+/* faq */
+.faq{margin:36px auto 0;max-width:780px;text-align:left}
+details{border-bottom:1px solid var(--linha);padding:20px 0}
+details:first-child{border-top:1px solid var(--linha)}
+summary{cursor:pointer;font-family:var(--fonte-titulo);font-size:1.25rem;list-style:none;display:flex;justify-content:space-between;gap:16px;letter-spacing:-.01em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--verde);font-size:1.6rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--texto-suave);max-width:60ch}
+
+/* chamada final */
+.final{background:linear-gradient(160deg,var(--rosa),#F1DFD4);text-align:center}
+.final .lead{margin:0 auto 32px;color:#5B554D}
+.final .acoes{justify-content:center}
+
+footer{background:var(--verde-escuro);color:#C9D3C8;padding:34px 0 calc(34px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:#F2EBE2}
+
+@media(max-width:960px){
+  .produtos{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:820px){
+  nav a:not(.btn){display:none}
+  section{padding:68px 0}
+  .hero{padding:36px 0 68px}
+  .hero .wrap,.sobre .wrap,.kit .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-foto .foto{max-width:none;aspect-ratio:4/4.2;margin:0}
+  .flutua{left:12px}
+  .passos,.depo,.cuidados .grade{grid-template-columns:1fr}
+  .passo .foto{aspect-ratio:4/3}
+  .numeros{grid-template-columns:repeat(3,1fr);gap:12px 16px}
+  .numeros b{font-size:2rem}
+  .faixa .wrap{justify-content:center;font-size:1rem}
+}
+@media(max-width:480px){
+  .produtos{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero .wrap>*{animation:none}
+  .btn,.produto{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="aviso">Frete grátis em pedidos acima de R$ 199. <a href="#produtos">Ver produtos</a></div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#inicio">Lume <i>skincare</i></a>
+    <nav aria-label="Principal">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a class="btn" href="https://wa.me/5511999999999?text=Quero%20montar%20minha%20rotina" target="_blank" rel="noopener">Montar minha rotina</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Menos produtos na bancada, uma rotina que <em>funciona.</em></h1>
+      <p class="lead">Você conta como é a sua pele e a sua rotina, e a gente monta um passo a passo simples, com os produtos certos para você.</p>
+      <div class="acoes">
+        <a class="btn" href="https://wa.me/5511999999999?text=Quero%20montar%20minha%20rotina" target="_blank" rel="noopener">Montar minha rotina</a>
+        <a class="btn sec" href="#produtos">Ver os produtos</a>
+      </div>
+      <p class="nota">A primeira orientação por WhatsApp é gratuita. <a href="#duvidas">Como funciona?</a></p>
+      <div class="selos"><span>Rotina por escrito</span><span>Produtos testados</span><span>Entrega para todo o Brasil</span></div>
+    </div>
+    <div class="hero-foto">
+      <!-- TROQUE: images/hero.jpg -->
+      <div class="foto arco"><img src="images/hero.jpg" alt="Produtos de skincare sobre uma bancada" onerror="this.remove()"></div>
+      <div class="flutua"><span class="ponto">✓</span><span><b>Rotina por escrito</b>de manhã e de noite</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="faixa">
+  <div class="wrap"><span>Orientação gratuita</span><span>Produtos selecionados</span><span>Troca em até 7 dias</span><span>Pix ou 6x sem juros</span></div>
+</div>
+
+<!-- CITAÇÃO -->
+<section class="citacao centro">
+  <div class="wrap">
+    <blockquote>“Tenho cinco produtos em casa e não sei em que ordem usar.”</blockquote>
+    <p>É a frase que mais ouvimos. Skincare não precisa de uma prateleira cheia: precisa de ordem, constância e produtos que combinem com a sua pele.</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="wrap">
+    <h2>Três passos, <em>sem complicação.</em></h2>
+    <p class="lead">Do primeiro contato à rotina na sua casa.</p>
+    <div class="passos">
+      <div class="passo">
+        <!-- TROQUE: images/passo-1.jpg -->
+        <div class="foto"><span class="n">1</span><img src="images/passo-1.jpg" alt="Conversa sobre o tipo de pele" loading="lazy" onerror="this.remove()"></div>
+        <h3>Sua pele</h3>
+        <p>Você responde algumas perguntas sobre tipo de pele, incômodos e o que já usa.</p>
+      </div>
+      <div class="passo">
+        <!-- TROQUE: images/passo-2.jpg -->
+        <div class="foto"><span class="n">2</span><img src="images/passo-2.jpg" alt="Produtos escolhidos" loading="lazy" onerror="this.remove()"></div>
+        <h3>Sua seleção</h3>
+        <p>Indicamos só o que faz sentido para você, sem empurrar produto a mais.</p>
+      </div>
+      <div class="passo">
+        <!-- TROQUE: images/passo-3.jpg -->
+        <div class="foto"><span class="n">3</span><img src="images/passo-3.jpg" alt="Rotina de manhã e noite por escrito" loading="lazy" onerror="this.remove()"></div>
+        <h3>Sua rotina</h3>
+        <p>Você recebe um passo a passo de manhã e de noite, por escrito, para seguir em casa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div class="wrap">
+    <!-- TROQUE: images/sobre.jpg -->
+    <div class="foto arco"><img src="images/sobre.jpg" alt="Fundadora da Lume Skincare" onerror="this.remove()"></div>
+    <div>
+      <h2>Quem escolhe os produtos <em>é quem usa.</em></h2>
+      <p>A Lume nasceu da vontade de simplificar o cuidado com a pele. Cada item da loja é testado e escolhido pela nossa equipe antes de entrar no catálogo.</p>
+      <p>Aqui você tem orientação de gente de verdade, por WhatsApp, antes e depois da compra.</p>
+      <div class="numeros">
+        <div><b>30</b><span>produtos selecionados</span></div>
+        <div><b>5 mil+</b><span>clientes atendidas</span></div>
+        <div><b>1</b><span>rotina só para você</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section id="produtos">
+  <div class="wrap">
+    <div class="centro">
+      <h2>Produtos escolhidos <em>com critério.</em></h2>
+      <p class="lead">Cada botão abre uma conversa no WhatsApp com o produto já na mensagem.</p>
+    </div>
+    <div class="produtos">
+      <!-- COPIE E COLE um bloco <article> para adicionar produtos. TROQUE: images/produto-1.jpg -->
+      <article class="produto">
+        <div class="foto"><img src="images/produto-1.jpg" alt="Gel de limpeza suave" loading="lazy" onerror="this.remove()"></div>
+        <div class="info">
+          <span class="chip">Limpeza</span>
+          <h3>Gel de limpeza suave</h3><div class="tam">150 ml</div>
+          <div class="rodape"><span class="preco">R$ 59</span><a class="btn sec" href="https://wa.me/5511999999999?text=Quero%20o%20Gel%20de%20limpeza%20suave" target="_blank" rel="noopener">Quero</a></div>
+        </div>
+      </article>
+      <article class="produto">
+        <div class="foto"><img src="images/produto-2.jpg" alt="Sérum de vitamina C" loading="lazy" onerror="this.remove()"></div>
+        <div class="info">
+          <span class="chip">Tratamento</span>
+          <h3>Sérum de vitamina C</h3><div class="tam">30 ml</div>
+          <div class="rodape"><span class="preco">R$ 119</span><a class="btn sec" href="https://wa.me/5511999999999?text=Quero%20o%20S%C3%A9rum%20de%20vitamina%20C" target="_blank" rel="noopener">Quero</a></div>
+        </div>
+      </article>
+      <article class="produto">
+        <div class="foto"><img src="images/produto-3.jpg" alt="Hidratante facial" loading="lazy" onerror="this.remove()"></div>
+        <div class="info">
+          <span class="chip">Hidratação</span>
+          <h3>Hidratante facial</h3><div class="tam">50 g</div>
+          <div class="rodape"><span class="preco">R$ 89</span><a class="btn sec" href="https://wa.me/5511999999999?text=Quero%20o%20Hidratante%20facial" target="_blank" rel="noopener">Quero</a></div>
+        </div>
+      </article>
+      <article class="produto">
+        <div class="foto"><img src="images/produto-4.jpg" alt="Protetor solar facial FPS 50" loading="lazy" onerror="this.remove()"></div>
+        <div class="info">
+          <span class="chip">Proteção</span>
+          <h3>Protetor solar FPS 50</h3><div class="tam">50 g</div>
+          <div class="rodape"><span class="preco">R$ 79</span><a class="btn sec" href="https://wa.me/5511999999999?text=Quero%20o%20Protetor%20solar%20FPS%2050" target="_blank" rel="noopener">Quero</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- KIT -->
+<section class="kit">
+  <div class="wrap">
+    <div>
+      <h2>Kit Rotina Básica, <em>tudo de uma vez.</em></h2>
+      <p>O essencial para começar bem, já com o passo a passo de manhã e de noite.</p>
+      <ul><li>Gel de limpeza, hidratante e protetor solar</li><li>Rotina por escrito</li><li>R$ 199 no Pix ou em até 6x sem juros</li></ul>
+      <a class="btn claro" href="https://wa.me/5511999999999?text=Quero%20o%20Kit%20Rotina%20B%C3%A1sica" target="_blank" rel="noopener">Quero o kit</a>
+    </div>
+    <!-- TROQUE: images/kit.jpg -->
+    <div class="foto"><img src="images/kit.jpg" alt="Kit rotina básica" loading="lazy" onerror="this.remove()"></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS: troque pelos depoimentos reais das suas clientes -->
+<section>
+  <div class="wrap">
+    <div class="centro"><h2>Quem já <em>montou a rotina.</em></h2></div>
+    <div class="depo">
+      <figure><blockquote>“Finalmente entendi a ordem certa. Minha pele está bem mais calma.”</blockquote><figcaption>Mariana, São Paulo</figcaption></figure>
+      <figure><blockquote>“Comprei menos produtos do que eu pensava e gastei melhor.”</blockquote><figcaption>Camila, Curitiba</figcaption></figure>
+      <figure><blockquote>“O aviso de repor chegou na hora certa. Muito prático.”</blockquote><figcaption>Aline, Belo Horizonte</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIS DA COMPRA -->
+<section class="cuidados">
+  <div class="wrap">
+    <h2>A compra acaba. <em>O cuidado continua.</em></h2>
+    <p class="lead">Muita gente começa animada e, em um mês, abandona. Por isso a gente acompanha.</p>
+    <div class="grade">
+      <div><h3>O aviso antes de acabar</h3><p>Uns dias antes do produto acabar, a gente avisa e deixa o pedido pronto para repetir.</p></div>
+      <div><h3>O ajuste no tempo certo</h3><p>Com 30 dias, chamamos você para contar como a pele está e ajustar a rotina.</p></div>
+      <div><h3>Dúvidas a qualquer hora</h3><p>Ficou na dúvida de como usar? É só mandar mensagem no WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DÚVIDAS -->
+<section id="duvidas" class="centro">
+  <div class="wrap">
+    <h2>Antes de <em>comprar.</em></h2>
+    <div class="faq">
+      <details><summary>A orientação tem custo?</summary><p>Não. A primeira orientação por WhatsApp é gratuita e não obriga a comprar.</p></details>
+      <details><summary>Quanto tempo leva a entrega?</summary><p>De 2 a 7 dias úteis, dependendo da região. Você recebe o código de rastreio por WhatsApp.</p></details>
+      <details><summary>Como posso pagar?</summary><p>Pix ou cartão de crédito em até 6x sem juros.</p></details>
+      <details><summary>E se eu não me adaptar ao produto?</summary><p>Você tem 7 dias após o recebimento para pedir troca ou devolução. Fale com a gente no WhatsApp.</p></details>
+      <details><summary>Serve para pele sensível?</summary><p>Sim. Contando seu tipo de pele, indicamos apenas produtos adequados. Em caso de condições de pele, vale conversar antes com um dermatologista.</p></details>
+      <details><summary>Posso comprar sem montar a rotina?</summary><p>Pode. Escolha os produtos na loja e peça pelo botão de cada um.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CHAMADA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2>Conte da sua pele. <em>A gente monta o resto.</em></h2>
+    <p class="lead">Chame no WhatsApp e receba a sua rotina por escrito.</p>
+    <div class="acoes">
+      <a class="btn" href="https://wa.me/5511999999999?text=Quero%20montar%20minha%20rotina" target="_blank" rel="noopener">Montar minha rotina</a>
+      <a class="btn sec" href="#produtos">Ver os produtos</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Lume Skincare. CNPJ 00.000.000/0001-00</span>
+    <span><a href="https://instagram.com/seuperfil" target="_blank" rel="noopener">Instagram</a> · contato@exemplo.com.br</span>
+  </div>
+</footer>
+
+</body>
+</html>
